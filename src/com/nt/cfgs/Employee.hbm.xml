@@ -1,0 +1,32 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.nt.entities.Employee" table="employee">
+
+		<id name="id" />
+		<discriminator column="emptype" type="string" />
+		<property name="name" />
+		<property name="email" />
+		<property name="salary" />
+
+
+		<subclass name="com.nt.entities.SoftwareEmployee"
+			discriminator-value="softEmpl">
+			<property name="tool" />
+		</subclass>
+
+
+		<subclass name="com.nt.entities.HardwareEmployee"
+			discriminator-value="HardEmpl">
+			<property name="workingHours" />
+		</subclass>
+
+
+		<subclass name="com.nt.entities.Admin" discriminator-value="AdminEmpl">
+			<property name="branchName" />
+		</subclass>
+
+	</class>
+
+</hibernate-mapping>
